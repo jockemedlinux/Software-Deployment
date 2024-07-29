@@ -146,5 +146,5 @@ wmic path SoftwareLicensingService get OA3xOriginalProductKey
 User Account Control: Admin Approval Mode for the Built-in Administrator account 	| Disabled (standard)
 User Account Control: Run all admiistrators in Admin Approval Mode 					| Disable
 
-Now your admin user is actually admin..
+Now your admin user is actually admin.
 ```
