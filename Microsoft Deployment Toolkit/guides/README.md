@@ -34,10 +34,15 @@ Shift+F10
 OOBE\BYPASSNRO
 ```
 ## Powershell
-### Misc workings
+### Online / Offline a External HDD
 ```
 Set-Disk -Number 5 -Offline $true
 Set-Disk -Number 5 -Offline $false
+```
+### Disable Default Switch for WSL
+```
+Get-NetAdapter -IncludeHidden | Where-Object -Property Name -Like "*Default*" | Disable-NetAdapter
+Get-NetAdapter -IncludeHidden | Where-Object -Property Name -Like "*Default*" | Enable-NetAdapter
 ```
 
 ## Hyper-V
