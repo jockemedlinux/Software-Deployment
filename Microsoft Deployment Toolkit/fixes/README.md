@@ -12,3 +12,11 @@ Open up
 Install DaRT V10
 Take .cab files and put into Share\Tools\x86 Share\Tools\x64
 ```
+
+### Change information in deployment windown
+```
+In LiteTouch.wsf.
+
+change:
+oEnvironment.Item("_SMSTSPackageName") = oEnvironment.Item("TaskSequenceName") 
+```
