@@ -1,5 +1,10 @@
-# Various commands
-## DISM
+# MDT Specifics
+### Fix error when entering "Windows PE" x86
+```
+xcopy /E /H /I "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64" "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\x86"
+```
+
+# DISM
 ### Enable VirtualMachinePlatform and Hyper-V in a Windows environment.
 ```
 #Enable
@@ -22,7 +27,15 @@ DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Commit
 DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Discard
 ```
 
-## CMD
+### Check health and repair with DISM
+```
+DISM /Online /Cleanup-Image /CheckHealth
+DISM /Online /Cleanup-Image /ScanHealth
+DISM /Online /Cleanup-Image /RestoreHealth
+DISM /Online /Cleanup-Image /RestoreHealth /Source:C:\path\to\sources\install.wim /LimitAccess
+```
+
+# CMD
 ### Add CMD-keys to you session to access remote places.
 ```
 cmdkey /add:$HOST /user:$USER /pass:$PASS
@@ -33,7 +46,7 @@ cmdkey /del:$HOST
 Shift+F10
 OOBE\BYPASSNRO
 ```
-## Powershell
+# Powershell
 ### Online / Offline a External HDD
 ```
 Set-Disk -Number 5 -Offline $true
@@ -45,8 +58,8 @@ Get-NetAdapter -IncludeHidden | Where-Object -Property Name -Like "*Default*" | 
 Get-NetAdapter -IncludeHidden | Where-Object -Property Name -Like "*Default*" | Enable-NetAdapter
 ```
 
-## Hyper-V
-## Enable nested virtualization for VM's
+# Hyper-V
+### Enable nested virtualization for VM's
 ```
 //Enable
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
@@ -55,14 +68,14 @@ Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
 ```
 
-## Hot plug a external HDD drive to Hyper-V VM.
+### Hot plug a external HDD drive to Hyper-V VM.
 ```
 1.Connect USB-drive
 2.Make sure its offline
 3.Link it to a VM
 ```
 
-## Enable Remote Desktop with Enhanced Session Mode
+### Enable Remote Desktop with Enhanced Session Mode
 ```
 //Enable
 Set-VM <VMName> -EnhancedSessionTransportType HVSocket
@@ -75,7 +88,7 @@ more info: https://www.kali.org/docs/virtualization/install-hyper-v-guest-enhanc
 ```
 
 # VirtualBox
-## Enable / Disable hypervisor (also known as turtle Icon)
+### Enable / Disable hypervisor (also known as turtle Icon)
 ```
 #Make sure to remove Hyper-V from Windows. Type 1 HyperVisor (Hyper-V) cannot coexist with type 2 HyperVisor VirtualBox in a windows environment.
 
@@ -85,12 +98,13 @@ bcdedit /set hypervisorlaunchtype off
 //Enable
 bcdedit /set hypervisorlaunchtype auto 
 ```
-## Map a RAW disk (a usb for instance)
+
+### Map a RAW disk (a usb for instance)
 ```
 .\VBoxManage.exe createmedium disk --filename usb1.vmdk --format=VMDK --variant RawDisk --property RawDrive=\\.\PhysicalDrive2
 ```
 
-## Create a dhcp-server or internal network for labs
+### Create a dhcp-server or internal network for labs
 ```
 # Go to "C:\Program Files\Oracle\Virtualbox\"
 // List current dhcpservers
@@ -103,7 +117,7 @@ bcdedit /set hypervisorlaunchtype auto
 .\vboxmanage.exe dhcpserver remove --network=<name>
 ```
 
-## Use VirtualBox to clone/format virtual disks.
+### Use VirtualBox to clone/format virtual disks.
 ```
 //Reformat VHDX to VDI
 ./VBoxManage.exe clonehd C:\Users\redpill\Desktop\$NAME.vhdx C:\Users\redpill\Desktop\$NAME.vdi --format VDI
@@ -113,7 +127,7 @@ bcdedit /set hypervisorlaunchtype auto
 ```
 
 # QEMU
-## Use QEMU to reformat between multiple Virtual Disks Formats.
+### Use QEMU to reformat between multiple Virtual Disks Formats.
 ```
 # https://www.qemu.org/download/
 
@@ -134,13 +148,13 @@ qemu convert -f vmdk -O vhdx image.vmdk image.vhdx
 ```
 
 # WMIC
-## Get product key of a windows instance
+### Get product key of a windows instance
 ```
 wmic path SoftwareLicensingService get OA3xOriginalProductKey
 ```
 
 # GROUP POLICY KEYS
-## Admin Approval Mode
+### Admin Approval Mode
 #### Set admin users to actually admin, not restricted admins. (warning, never do this.)
 ```
 User Account Control: Admin Approval Mode for the Built-in Administrator account 	| Disabled (standard)
