@@ -1,9 +1,3 @@
-# MDT Specifics
-### Fix error when entering "Windows PE" x86
-```
-xcopy /E /H /I "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64" "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\x86"
-```
-
 # DISM
 ### Enable VirtualMachinePlatform and Hyper-V in a Windows environment.
 ```
