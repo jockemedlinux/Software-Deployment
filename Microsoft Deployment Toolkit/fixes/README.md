@@ -20,3 +20,10 @@ In LiteTouch.wsf.
 change:
 oEnvironment.Item("_SMSTSPackageName") = oEnvironment.Item("TaskSequenceName") 
 ```
+
+### Set logfiles to date/time
+```
+https://www.deploymentresearch.com/naming-logs-folder-in-mdt-after-date-and-time/
+
+SLSHARE=MDT01Logs$#month(date) & "-" & day(date) & "-" & year(date) & "__" & hour(now) & "-" & minute(now)#
+```
