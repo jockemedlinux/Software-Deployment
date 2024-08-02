@@ -10,3 +10,7 @@ https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties#property-definiti
 # Gurus
 https://github.com/DeploymentResearch/DRFiles
 https://www.deploymentresearch.com/
+
+# Microsoft Support-sites
+https://learn.microsoft.com/en-us/mem/configmgr/mdt/support-files
+https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties
