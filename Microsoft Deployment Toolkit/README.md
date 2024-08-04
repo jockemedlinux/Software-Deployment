@@ -24,3 +24,6 @@ https://techcommunity.microsoft.com/t5/windows-blog-archive/displaying-the-task-
 
 # Language Packs
 https://gist.github.com/dexit/87f30cffa70ea6899177f536a8dc788f
+
+# WinPE Driver Packs
+https://www.dell.com/support/kbdoc/sv-se/000107478/dell-command-installera-winpe-drivrutinspaket
