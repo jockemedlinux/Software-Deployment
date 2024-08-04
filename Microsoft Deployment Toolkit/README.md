@@ -27,3 +27,7 @@ https://gist.github.com/dexit/87f30cffa70ea6899177f536a8dc788f
 
 # WinPE Driver Packs
 https://www.dell.com/support/kbdoc/sv-se/000107478/dell-command-installera-winpe-drivrutinspaket
+
+# Windows Driver Kit
+https://learn.microsoft.com/sv-se/windows-hardware/drivers/download-the-wdk
+https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/
