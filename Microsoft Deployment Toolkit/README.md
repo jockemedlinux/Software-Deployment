@@ -21,3 +21,6 @@ DefaultTimeZones:		https://learn.microsoft.com/en-us/windows-hardware/manufactur
 
 # Other
 https://techcommunity.microsoft.com/t5/windows-blog-archive/displaying-the-task-sequence-name/ba-p/706646 
+
+# Language Packs
+https://gist.github.com/dexit/87f30cffa70ea6899177f536a8dc788f
