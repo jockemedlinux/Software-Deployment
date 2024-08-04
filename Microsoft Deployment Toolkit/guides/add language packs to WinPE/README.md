@@ -6,9 +6,15 @@ Steps taken:
 2. Install / Add desired langpack
 3. Close and commit image.
 
-
 ```
-dism /mount-wim /WimFile:.\LiteTouchPE_x64.wim /index:1 /MountDir:C:\MOUNT
+dism /mount-wim /WimFile:.\LiteTouchPE_x64.wim /index:1 /MountDir:C:\WIM-MOUNT
 dism /Image:"C:\mount" /Add-Package /PackagePath="C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\sv-se\lp.cab"
-dism /Unmount-Wim /MountDir:C:\MOUNT /Commit
+dism /Unmount-Wim /MountDir:C:\WIM-MOUNT /Commit
+```
+
+## Or set it manually in the wim-image.
+```
+dism /mount-wim /WimFile:.\LiteTouchPE_x64.wim /index:1 /MountDir:C:\WIM-MOUNT
+dism /image:C:\WIM-MOUNT /Set-InputLocale:sv-SE
+dism /Unmount-Wim /MountDir:C:\WIM-MOUNT /Commit
 ```
