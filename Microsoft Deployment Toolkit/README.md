@@ -12,22 +12,22 @@ https://github.com/DeploymentResearch/DRFiles
 https://www.deploymentresearch.com/  
 
 # Microsoft Support-sites
-Support files:
+Support files:  
 https://learn.microsoft.com/en-us/mem/configmgr/mdt/support-files  
 
-Properties:
+Properties:  
 https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties  
 
-LanguagePacks:
+LanguagePacks:  
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766191(v=ws.10)  
 
 Input Profiles:  
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs?view=windows-11  
 
-Keyboard Identifiers:
+Keyboard Identifiers:  
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-language-pack-default-values?view=windows-11  
 
-DefaultTimeZones:
+DefaultTimeZones:  
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11  
 
 # Other
