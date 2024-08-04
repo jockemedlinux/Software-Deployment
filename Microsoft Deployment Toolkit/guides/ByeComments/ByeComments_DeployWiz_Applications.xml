@@ -29,7 +29,7 @@
 		<![CDATA[
       <H1>Select one or more applications to install.</H1>
 	  <!-- ToggleComments checkbox (ByeComments) -->
-	  <img src="ItemIcon1.png" /> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments(!)
+	  <img src="ToggleCommentsIcon1.png" width="15" height="15"/> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments. </br>
 	  
 		<div class=TreeList id=AppListBox style="height: expression( GetDynamicListBoxSize(this) );">
 
