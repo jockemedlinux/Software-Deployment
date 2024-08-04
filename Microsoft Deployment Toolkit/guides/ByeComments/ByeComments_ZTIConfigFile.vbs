@@ -699,7 +699,7 @@ Class ConfigFile
 			If not oItem.SelectSingleNode("./Comments") is nothing then
 				sComments = EncodeXML(oItem.SelectSingleNode("./Comments").Text)
 				If sComments <> "" then
-					sComments = "<div id='ByeComments1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & sComments & "</div>"
+					sComments = "<div class='ByeComments1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & sComments & "</div>"
 				End if
 			End if
 			
@@ -722,7 +722,6 @@ Class ConfigFile
 		End if		
 		
 	End function 
-
 
 	Private Function BuildHTML_Folder ( oFolder, byval iLevel )  ' AS String
 

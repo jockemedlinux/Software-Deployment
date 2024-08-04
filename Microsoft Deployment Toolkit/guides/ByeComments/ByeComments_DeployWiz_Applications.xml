@@ -28,6 +28,7 @@
 		<Body>
 		<![CDATA[
       <H1>Select one or more applications to install.</H1>
+	  <!-- ToggleComments checkbox (ByeComments) -->
 	  <img src="ItemIcon1.png" /> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments(!)
 	  
 		<div class=TreeList id=AppListBox style="height: expression( GetDynamicListBoxSize(this) );">
@@ -64,6 +65,8 @@ Please confirm Administrator Password: <br/>
 </p>
 
 			]]>
+
+
 		</Body>
 		<Initialization><![CDATA[ Password2.Value = Password1.Value ]]></Initialization>
 		<Validation><![CDATA[ValidatePassword]]></Validation>
