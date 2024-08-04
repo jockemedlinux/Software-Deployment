@@ -156,3 +156,11 @@ User Account Control: Run all admiistrators in Admin Approval Mode 					| Disabl
 
 Now your admin user is actually admin.
 ```
+
+
+
+# PUBLIC GUIDES
+#### Manually create WinPEIso Media
+```
+https://4sysops.com/archives/create-a-winpe-bootable-disk-with-windows-11/
+```
