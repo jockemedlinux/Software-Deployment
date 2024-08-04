@@ -21,7 +21,7 @@ https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties
 LanguagePacks:
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766191(v=ws.10)  
 
-Input Profiles:
+Input Profiles:  
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs?view=windows-11  
 
 Keyboard Identifiers:
