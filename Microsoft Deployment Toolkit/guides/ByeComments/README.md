@@ -21,7 +21,7 @@ outlined steps:
 DeployWiz_Applications.xml
 ```xml
 	  <!-- ToggleComments checkbox (ByeComments) -->
-	  <img src="ItemIcon1.png" /> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments(!)
+	  <img src="ItemIcon1.png" /> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Hide/Show comments
 ```
 
 ZTIConfigFile.vbs
@@ -100,5 +100,5 @@ DeployWiz_SelectTS.vbs
 DeployWiz_SelectTS.xml
 ```xml
 <!-- ToggleComments checkbox (ByeComments) -->
-<img src="ToggleCommentsIcon1.png" width="15" height="15"/> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments. </br>
+<img src="ToggleCommentsIcon1.png" width="15" height="15"/> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Hide/Show comments </br>
 ```
