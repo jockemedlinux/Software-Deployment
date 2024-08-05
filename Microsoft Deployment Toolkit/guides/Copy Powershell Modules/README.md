@@ -5,7 +5,7 @@
 dism /mount-wim /WimFile:.\LiteTouchPE_x64.wim /index:1 /MountDir:C:\WIM-MOUNT
 
 //Copy the powershell moduel to the bootiles psmodulepath
-xcopy /E /H /I C:\Users\admin\Desktop\GIT\PUBLIC\DHCPClient-PS C:\WIM-MOUNT\Windows\System32\WindowsPowerShell\v1.0\Modules\DHCPClient-PS
+xcopy /E /H /I D:\_MDT\_shares\_poweshell-modules\* C:\WIM-MOUNT\Windows\System32\WindowsPowerShell\v1.0\Modules\
 
 //Unmount the wim boot file
 dism /Unmount-Wim /MountDir:C:\WIM-MOUNT /Commit
