@@ -12,7 +12,7 @@ dism /Image:"C:\mount" /Add-Package /PackagePath="C:\Program Files (x86)\Windows
 dism /Unmount-Wim /MountDir:C:\WIM-MOUNT /Commit
 ```
 
-## Or set it manually in the wim-image.
+## Set the InputLocale (for CMD) in WinPE
 ```
 dism /mount-wim /WimFile:.\LiteTouchPE_x64.wim /index:1 /MountDir:C:\WIM-MOUNT
 dism /image:C:\WIM-MOUNT /Set-InputLocale:sv-SE
