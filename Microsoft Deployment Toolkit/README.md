@@ -2,14 +2,14 @@
 Stuff about MDT and/or related to OS deployment.
 
 # Known Issues
-https://learn.microsoft.com/en-us/mem/configmgr/mdt/known-issues#zti-extensions-with-version-2013-or-2107
+https://learn.microsoft.com/en-us/mem/configmgr/mdt/known-issues#zti-extensions-with-version-2013-or-2107  
 
 # CustomSettings properties
-https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties#property-definition
+https://learn.microsoft.com/en-us/mem/configmgr/mdt/properties#property-definition  
 
-# Gurus
-https://github.com/DeploymentResearch/DRFiles  
-https://www.deploymentresearch.com/  
+# DaRT-Tools
+https://learn.microsoft.com/en-us/microsoft-desktop-optimization-pack/dart-v10/  
+
 
 # Microsoft Support-sites
 Support files:  
@@ -30,8 +30,10 @@ https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-l
 DefaultTimeZones:  
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11  
 
-# Other
+# Gurus
 https://techcommunity.microsoft.com/t5/windows-blog-archive/displaying-the-task-sequence-name/ba-p/706646  
+https://github.com/DeploymentResearch/DRFiles  
+https://www.deploymentresearch.com/  
 
 # Language Packs
 https://gist.github.com/dexit/87f30cffa70ea6899177f536a8dc788f  
