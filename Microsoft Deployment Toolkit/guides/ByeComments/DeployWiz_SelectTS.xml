@@ -28,7 +28,7 @@
 			<![CDATA[
 				<H1>Select a task sequence to execute on this computer.</H1>
 				<!-- ToggleComments checkbox (ByeComments) -->
-				<img src="ToggleCommentsIcon1.png" width="15" height="15"/> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Check this box to toggle comments. </br>
+				<img src="ToggleCommentsIcon1.png" width="15" height="15"/> <input type="checkbox" id="ToggleComments" name="ToggleComments" value="ToggleComments" /> Hide/Show comments </br>
 				<label class=ErrMsg id=Bad_OSGUID>Bad Task Sequence Item (Missing OS)</label>
 
 				<div class=TreeList id=TSListBox style="height: expression( GetDynamicListBoxSize(this) );">
