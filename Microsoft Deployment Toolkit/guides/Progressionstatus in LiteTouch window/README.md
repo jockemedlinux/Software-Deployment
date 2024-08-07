@@ -4,7 +4,7 @@
 https://www.systanddeploy.com/2018/02/add-complete-progression-status-to.html
 
 
-[alt text](BILD)
+[alt text](https://github.com/jockemedlinux/SoftwareDeployment/blob/master/Microsoft%20Deployment%20Toolkit/guides/Progressionstatus%20in%20LiteTouch%20window/progressionimage.png?raw=true)
 
 Code to add in ZTIUtility.vbs
 ```vbs
