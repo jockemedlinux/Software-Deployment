@@ -1,0 +1,8 @@
+DHCP.leases finns under:
+/var/lib/dhcp/dhcp.leases
+
+DHCP-config finns under:
+/etc/dhcp/dhcpd.conf
+
+För att starta och stoppa servicen:
+systemctl restart isc-dhcp-server
