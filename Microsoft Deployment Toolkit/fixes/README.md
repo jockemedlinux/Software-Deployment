@@ -27,3 +27,21 @@ https://www.deploymentresearch.com/naming-logs-folder-in-mdt-after-date-and-time
 
 SLSHARE=MDT01Logs$#month(date) & "-" & day(date) & "-" & year(date) & "__" & hour(now) & "-" & minute(now)#
 ```
+
+### If change SHARE location or UNC
+```
+
+    DeploymentWorkbench > Deployment Shares > Share Name > right-click > Properties > General > Network (UNC) path
+    DeploymentWorkbench > Deployment Shares > Share Name > right-click > Properties > Rules > Edit Bootstrap.ini > DeployRoot=\servername\directorylocation
+    \servername\deploymentshare$\control > Edit CustomSettings.ini > If the server name is included anywhere in this file, update it
+    \servername\deploymentshare$\control\deployment\ > Edit Unattend.xml > Do a find a for the old server name and replace with the new one
+
+
+And monitoring 
+```
+
+```
+Get-WmiObject -Computer RAMbunctious -Class Win32_Share
+net share share$=D:\SoftwareDeployment\MDT\RAMbunctious /REMARK:"DeploymentShare" /GRANT:mdt,FULL /GRANT:admin,FULL
+net share D:\SoftwareDeployment\MDT\RAMbunctious /delete
+```

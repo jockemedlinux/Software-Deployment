@@ -34,6 +34,9 @@ https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-t
 https://techcommunity.microsoft.com/t5/windows-blog-archive/displaying-the-task-sequence-name/ba-p/706646  
 https://github.com/DeploymentResearch/DRFiles  
 https://www.deploymentresearch.com/  
+https://www.systanddeploy.com/  
+https://www.ronnipedersen.com/2014/10/27/setting-osdcomputername-using-customsettings-ini/
+https://mdtguy.wordpress.com/2013/07/12/mdt-customsettings-ini-tips-tricks/
 
 # Language Packs
 https://gist.github.com/dexit/87f30cffa70ea6899177f536a8dc788f  
