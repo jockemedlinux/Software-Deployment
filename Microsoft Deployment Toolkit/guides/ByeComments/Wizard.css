@@ -1,4 +1,4 @@
-/******************** FONT Styles **********************/
+/******************** FONT Styles ***************************/
 
 /*  
 
@@ -113,7 +113,7 @@ BODY
 
 /* Added ByeComments-Class for toggle comments in applications list */
 .ByeComments1 {
-	display: block; /* or "none" if you want it initially hidden */
+	display: none; /* or "none" if you want it initially hidden */
 }
 
 .DynamicListBoxRow-Over
