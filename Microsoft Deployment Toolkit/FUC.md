@@ -17,6 +17,8 @@ Invoke-PS2EXE -inputFile .\pre-clean-disk.ps1 -outputFile .\pre-clean-disk.exe -
 dism /mount-wim /wimfile:LiteTouchPE_x64.wim /mountdir:C:\WIM-MOUNT\ /index:1
 dism /Unmount-Wim /MountDir:C:\WIM-MOUNT /Commit
 dism /image:C:\WIM-MOUNT /Set-InputLocale:sv-SE
+
+dism /Image:C:\WIM-BOOT /Apply-Unattend:C:\Path\To\Your\unattend.xml
 ```
 
 ### DeploymentShare via Powershell
