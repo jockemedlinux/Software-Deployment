@@ -43,13 +43,14 @@ Write-Host                              "---------------------------------------
 Write-Host                              "[*] NOW LET'S CREATE A HYPER-V VIRTUAL MACHINE"
 
 
+
+
 #FUNCTIONS
-        
 function FolderChecks {
     do {
         # CHECK FOR EXISTING FOLDERS
-        $VMHDDpath = "C:\ProgramData\Microsoft\Windows\Virtual Hard Disks\$VMname"
-        $VMPath = "C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines\$VMname"
+        $VMHDDpath = "D:\Virtualization\Hyper-V\Virtual Hard Disks\$VMname"
+        $VMPath = "D:\Virtualization\Hyper-V\Virtual Machines\$VMname"
         
         $TestVMHDDpath = Test-Path $VMPath
         $TestVMPath = Test-Path $VMHDDpath
@@ -93,12 +94,13 @@ if ($VMname -eq "") {
 #CHECK FOR EXISTING FOLDERS
 FolderChecks
 
+
 # Display the generated VM name
 Write-Host "[?] Generated VM Name: $VMname" -ForegroundColor DarkYellow
 
 Write-Host "--------------------------------------------------------------"
 
-    $version = Read-Host -Prompt " -> Version? `t`t[9.0]"
+    $version = Read-Host -Prompt " -> Version? `t`t`t[9.0]"
     if ($version -eq "") {
         $version = "9.0"
     } elseif ($version -gt "11.0" -or $version -lt "8.0") {
@@ -110,19 +112,19 @@ Write-Host "--------------------------------------------------------------"
         exit 1
     }
     
-    $generation = Read-Host -Prompt " -> Generation? `t[2]"
+    $generation = Read-Host -Prompt " -> Generation? `t`t[2]"
         if ($generation -eq "") { $generation = 2 }
     
-    $processes = Read-Host -Prompt " -> Processors? `t[4]"
+    $processes = Read-Host -Prompt " -> Processors? `t`t[4]"
         if ($processes -eq "") { $processes = 4 }
     
-    $net = Read-Host -Prompt " -> NetworkAdapter? `t[Not connected]"
+    $net = Read-Host -Prompt " -> NetworkAdapter? `t`t[Not connected]"
         if ($net -eq "") { $net = "Not connected" }
 
-    $iso = Read-Host -Prompt " -> Set ISO boot image? `t[not attached]"
+    $iso = Read-Host -Prompt " -> Set ISO boot image? `t[Not attached]"
         if ($iso -eq "") { $iso = $null }
     
-    $size = Read-Host -Prompt " -> VHDX Size? `t`t[100GB]"
+    $size = Read-Host -Prompt " -> VHDX Size? `t`t`t[100GB]"
         if ($size -eq "") { 
             $size = 100
         } else {
@@ -132,7 +134,7 @@ Write-Host "--------------------------------------------------------------"
     # Convert MB to Bytes
     $sizeinBytes = $size * 1GB
     
-    $memory = Read-Host -Prompt " -> Memory? `t`t[4096MB]"
+    $memory = Read-Host -Prompt " -> Memory? `t`t`t[4096MB]"
         if ($memory -eq "") { 
             $memory = 4096
         } else {
@@ -142,10 +144,15 @@ Write-Host "--------------------------------------------------------------"
     # Convert MB to Bytes
     $memoryInBytes = $memory * 1MB
     
+    #DEFINE LOCATION TO HYPER-V MACHINES AND DISKS
+    $VMHDDpath = "D:\Virtualization\Hyper-V\Virtual Hard Disks\$VMname"
+    $VMPath = "D:\Virtualization\Hyper-V\Virtual Machines\$VMname"   
+    $rootpath = (Get-VM).Path[0]
     # Continue with the rest of your script...
     Write-Host ""
-    Write-Host -ForegroundColor Green "[+] Your machine will be placed here: `t`t'C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines\$VMname\'"
-    Write-Host -ForegroundColor Green "[+] Your disk will be placed here: `t`t'C:\ProgramData\Microsoft\Windows\Virtual Hard Disks\$VMname\$VMname.vhdx'"
+    
+    Write-Host -ForegroundColor Green "[+] Your machine will be placed here: `t`t'$rootpath'"
+    Write-Host -ForegroundColor Green "[+] Your disk will be placed here: `t`t'$VMHDDpath.vhdx'"
     Write-Host -ForegroundColor Green "[+] Boot ISO location: `t`t`t`t'$iso'"
     Write-Host -ForegroundColor Green "[+] Configuration version: `t`t`t'$version'"
     Write-Host -ForegroundColor Green "[+] Generation version: `t`t`t'$generation'"
@@ -158,7 +165,7 @@ Write-Host "--------------------------------------------------------------"
 
 
 # CREATE AND PREP PRIMARY VHDXs
-$VHDXPath = "C:\ProgramData\Microsoft\Windows\Virtual Hard Disks\$VMname\$VMname.vhdx"
+$VHDXPath = "$VMHDDPath.vhdx"
 New-VHD -Path $VHDXPath -SizeBytes $sizeinBytes -Dynamic | Out-Null
     Write-Host
     Write-Host -ForegroundColor DarkYellow "[?] Preparing new VHDX."
@@ -185,17 +192,17 @@ New-VHD -Path $VHDXPath -SizeBytes $sizeinBytes -Dynamic | Out-Null
 
 # CREATE MACHINE
 if ($net -eq "Not connected") {
-    New-VM -Name "$VMname" -MemoryStartupBytes "$memoryInBytes" -Generation "$generation" -Version "$version" -Path "C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines\" | Out-Null
+    New-VM -Name "$VMname" -MemoryStartupBytes "$memoryInBytes" -Generation "$generation" -Version "$version" | Out-Null
 }
 else {
-    New-VM -Name "$VMname" -MemoryStartupBytes "$memoryInBytes" -Generation "$generation" -Version "$version" -SwitchName "$net" -Path "C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines\" | Out-Null
+    New-VM -Name "$VMname" -MemoryStartupBytes "$memoryInBytes" -Generation "$generation" -Version "$version" -SwitchName "$net" | Out-Null
 }
 Set-VM -Name "$VMname" -ProcessorCount "$processes" -DynamicMemory -EnhancedSessionTransportType HvSocket
 
 if ($generation -eq 2) {
     # IF GENERATION 2
     Set-VMFirmware -VMName "$VMname" -EnableSecureBoot Off
-    Add-VMHardDiskDrive -VMName "$VMname" -Path "C:\ProgramData\Microsoft\Windows\Virtual Hard Disks\$VMname\$VMname.vhdx" -ControllerType SCSI -ControllerNumber 0 -ControllerLocation 0
+    Add-VMHardDiskDrive -VMName "$VMname" -Path "$VHDXPath" -ControllerType SCSI -ControllerNumber 0 -ControllerLocation 0
     
     #Allow nested Virtualization
     Set-VMProcessor -VMname "$VMName" -ExposeVirtualizationExtensions $true
@@ -223,7 +230,7 @@ else {
 
 if ($generation -ne 2) {
     # IF GENERATION 1
-    Add-VMHardDiskDrive -VMName "$VMname" -Path "C:\ProgramData\Microsoft\Windows\Virtual Hard Disks\$VMname\$VMname.vhdx"
+    Add-VMHardDiskDrive -VMName "$VMname" -Path "$VHDXPath"
     # Create another IDE controller with no drive attached
     Add-VMHardDiskDrive -VMName "$VMname"
     # Create a DVD-Drive
