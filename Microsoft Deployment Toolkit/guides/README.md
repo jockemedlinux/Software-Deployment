@@ -20,7 +20,12 @@ DISM /Mount-Wim /WimFile:$wimfile.wim /MountDir:C:\WIM\$wimfile.wim /Name:Window
 DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Commit
 DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Discard
 ```
-
+### Manually add specific drivers to the WinPE.wim file
+```
+DISM /mount-wim /WimFile:<PATH TO WIM-FILE> /index:1 /MountDir:C:\<PATH TO MOUNT-LOCATION>
+DISM /Image:C:\<PATH TO MOUNT-LOCATION> /Add-Driver /Driver:C:\<PATH TO DRIVERS>\ /Recurse
+DISM /Unmount-Wim /MountDir:C:\<PATH TO MOUNT-LOCATION> /Commit
+```
 ### Check health and repair with DISM
 ```
 DISM /Online /Cleanup-Image /CheckHealth
