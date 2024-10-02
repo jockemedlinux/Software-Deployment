@@ -19,6 +19,9 @@ DISM /Mount-Wim /WimFile:$wimfile.wim /MountDir:C:\WIM\$wimfile.wim /Index:1
 DISM /Mount-Wim /WimFile:$wimfile.wim /MountDir:C:\WIM\$wimfile.wim /Name:WindowsServer2019
 DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Commit
 DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Discard
+
+DISM /Image:.\mounted /Add-Driver /Driver:<path-to-drivers> /Recurse
+DISM /Image:.\mounted /Add-Driver /Driver:<path-to-drivers> /Recurse /ForceUnsigned
 ```
 
 ### Check health and repair with DISM
@@ -153,8 +156,12 @@ wmic path SoftwareLicensingService get OA3xOriginalProductKey
 ```
 User Account Control: Admin Approval Mode for the Built-in Administrator account 	| Disabled (standard)
 User Account Control: Run all admiistrators in Admin Approval Mode 					| Disable
-
 Now your admin user is actually admin.
+
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "FilterAdministratorToken" -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Value 0
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLUA" -Value 0
+
 ```
 
 
