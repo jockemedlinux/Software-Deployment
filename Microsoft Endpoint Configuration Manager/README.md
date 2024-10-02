@@ -34,12 +34,12 @@ https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-var
 ```powershell
 //Hide OOBE related categories:
 
-    HideEULAPage = true
-    HideOEMRegistrationScreen = true
-    HideWirelessSetupInOOBE = true
-    HideOnlineAccountScreens = true
-    HideLocalAccountScreen = true
-	ProtectYourPc = 3 
+	HideEULAPage = true
+	HideOEMRegistrationScreen = true
+	HideWirelessSetupInOOBE = true
+	HideOnlineAccountScreens = true
+	HideLocalAccountScreen = true   
+	ProtectYourPc = 3
 
 // Pin stuff to taskbar.
 TaskBarLinks
