@@ -52,7 +52,7 @@ TaskBarLinks
      --> LocalAccounts
 
 DISM /Mount-Wim /WimFile:<Path to .WIM file> /index:<your install index> MountDir:<path to mount dir>
-Copy <your custom unattend file> <path to mounted wim localtion>\%WINDIR%\Panther\unattend.xml
+Copy <your custom unattend file> <path to mounted wim location>\%WINDIR%\Panther\unattend.xml
 DISM /Unmount-Wim:<path to mounted image> /MountDir:<path to mounted image> /Commit 
 
 https://4sysops.com/archives/use-unattendxml-to-skip-out-of-box-experience-oobe-when-installing-windows-11/
