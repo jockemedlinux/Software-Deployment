@@ -43,6 +43,7 @@ https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-var
 
 // Pin stuff to taskbar.
 
+// Add Local Accounts.
 
 
 DISM /Mount-Wim /WimFile:<Path to .WIM file> /index:<your install index> MountDir:<path to mount dir>
