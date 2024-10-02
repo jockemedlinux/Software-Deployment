@@ -32,9 +32,23 @@ https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-var
 -> Commit.   
 
 ```powershell
+//Hide OOBE related categories:
+
+    HideEULAPage = true
+    HideOEMRegistrationScreen = true
+    HideWirelessSetupInOOBE = true
+    HideOnlineAccountScreens = true
+    HideLocalAccountScreen = true
+	ProtectYourPc = 3 
+
+// Pin stuff to taskbar.
+
+
+
 DISM /Mount-Wim /WimFile:<Path to .WIM file> /index:<your install index> MountDir:<path to mount dir>
 DISM /image:<path to mounted image> /Apply-Unattend:<path to unattend.xml>
 DISM /Unmount-Wim:<path to mounted image> /MountDir:<path to mounted image> /Commit 
 
 https://4sysops.com/archives/use-unattendxml-to-skip-out-of-box-experience-oobe-when-installing-windows-11/
 ```
+
