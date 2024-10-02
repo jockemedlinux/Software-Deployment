@@ -19,15 +19,15 @@ https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-var
 ```
 
 ### Create a custom Unattend.xml file.
--> Use Windows Image System Manager
--> Open your .wim media
--> Create new unattend.xml file in the middle window
--> Drag to middle window:
----> amd64_Microsoft-Windows-Shell-Setup_10.0.<Build-Nummer>_neutral
----> amd64_Microsoft-Windows-International-Core_10.0.<Build-Nummer>_neutral
--> Mount WIM.
--> Apply unattend.xml to mounted wim.
--> Commit.
+-> Use Windows Image System Manager   
+-> Open your .wim media   
+-> Create new unattend.xml file in the middle window   
+-> Drag to middle window:   
+---> amd64_Microsoft-Windows-Shell-Setup_10.0.<Build-Nummer>_neutral   
+---> amd64_Microsoft-Windows-International-Core_10.0.<Build-Nummer>_neutral   
+-> Mount WIM.   
+-> Apply unattend.xml to mounted wim.   
+-> Commit.   
 
 ```powershell
 DISM /Mount-Wim /WimFile:<Path to .WIM file> /index:<your install index> MountDir:<path to mount dir>
