@@ -42,12 +42,17 @@ https://learn.microsoft.com/en-us/mem/configmgr/osd/understand/task-sequence-var
 	ProtectYourPc = 3 
 
 // Pin stuff to taskbar.
+TaskBarLinks
+	--> Link0 - Link5
 
 // Add Local Accounts.
-
+7 oobeSystem
+ --> UserAccounts
+   --> LocalAccounts
+     --> LocalAccounts
 
 DISM /Mount-Wim /WimFile:<Path to .WIM file> /index:<your install index> MountDir:<path to mount dir>
-DISM /image:<path to mounted image> /Apply-Unattend:<path to unattend.xml>
+Copy <your custom unattend file> <path to mounted wim localtion>\%WINDIR%\Panther\unattend.xml
 DISM /Unmount-Wim:<path to mounted image> /MountDir:<path to mounted image> /Commit 
 
 https://4sysops.com/archives/use-unattendxml-to-skip-out-of-box-experience-oobe-when-installing-windows-11/
@@ -55,3 +60,4 @@ https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-s
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-setup-automation-overview?view=windows-11#implicit-answer-file-search-order
 ```
 
+![image](_resources/useraccounts.png)
