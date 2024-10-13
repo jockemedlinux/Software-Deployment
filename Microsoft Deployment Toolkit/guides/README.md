@@ -1,3 +1,30 @@
+# MDT Boot-file process
+### Make changes to boot images.
+```
+1. Mount WIM-file (LiteTouch_x64.wim)
+2. Make changes
+3. Commit.
+4. Fool MDT
+5. Done.
+
+For changes to ACTUALLY take effect you need to fool MDT to update your "LiteTouch_x64.iso" as well. 
+If you only made changes to the .wim file but not the DeploymentShare, nothing will actually be commited into the boot.wim imagefile inside of your "LiteTouch_x64.iso"
+To work around this problem you can open up any script in \Scripts\* and make any irrelevant changes to a file. This will give it a new hash, which in turn when updating image file MDT will find and then recreate the ISO image and thus updating the Boot.wim file inside \Sources\ of the ISO file.
+Such a hassle.
+
+So this is a 3-4 step process...
+
+"C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\en-us\winpe.wim" = template file for creating LiteTouch_x64.wim
+"D:\SoftwareDeployment\MDT\SHARE$\Boot\LiteTouchPE_x64.wim" =  WIM-file to be copied into Boot.wim inside the ISO.
+"<MOUNTEDISOIMAGE>:\Sources\Boot.wim" = The actual Boot.wim file which will Deploy onto the system.
+
+To update "<MOUNTEDISOIMAGE>:\Sources\Boot.wim" you need to either fool MDT by editing files in the share and throw off the HASH or do it manually with steps like
+
+1. cd: "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment"
+2. copype amd64 C:\WinPE_amd64
+3. MakeWinPEMedia /ISO C:\WinPE_amd64 C:\LiteTouch_x64.iso
+```
+
 # DISM
 ### Enable VirtualMachinePlatform and Hyper-V in a Windows environment.
 ```
