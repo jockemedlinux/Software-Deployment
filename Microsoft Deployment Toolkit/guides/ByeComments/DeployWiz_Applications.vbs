@@ -159,7 +159,4 @@ Sub ToggleCommentsClick
         End If
     Next
     
-'    With CreateObject("wscript.shell")
-'        '.Popup g_sApplicationDialog
-'    End With
 End Sub

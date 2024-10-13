@@ -3,7 +3,7 @@ Full credits: https://github.com/damienvanrobaeys/MDT-Task-Sequence-Debugger
 
 
 1. Open your LiteTouchx64.wim
-2. Paste files .. 
+2. Paste files into System32.. 
 	+ run_keys.cmd
 	+ TS_Debugger.exe
 	+ winpe_keys.exe
