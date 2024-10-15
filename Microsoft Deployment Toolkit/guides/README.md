@@ -44,8 +44,8 @@ dism.exe /online /disable-feature /featurename:VirtualMachinePlatform /norestart
 DISM /Get-ImageInfo /ImageFile:$wimfile.wim
 DISM /Mount-Wim /WimFile:$wimfile.wim /MountDir:C:\WIM\$wimfile.wim /Index:1
 DISM /Mount-Wim /WimFile:$wimfile.wim /MountDir:C:\WIM\$wimfile.wim /Name:WindowsServer2019
-DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Commit
-DISM /Umount-Image /MountDir:C:\WIM\$wimfile.wim /Discard
+DISM /Unmount-Image /MountDir:C:\WIM\$wimfile.wim /Commit
+DISM /Unmount-Image /MountDir:C:\WIM\$wimfile.wim /Discard
 
 DISM /Image:.\mounted /Add-Driver /Driver:<path-to-drivers> /Recurse
 DISM /Image:.\mounted /Add-Driver /Driver:<path-to-drivers> /Recurse /ForceUnsigned
