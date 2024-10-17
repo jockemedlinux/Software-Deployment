@@ -43,8 +43,14 @@ TS to capture user state.
 ![](_resources/2.png)
 
 How to Restore UserState   
-![](_resources/3.png)
+![](_resources/3.png)   
 
+And we are done, kind of.
+To capture more up to date settings of say Edge and other applications.   
+Got to: https://ehlertech.com/customxmls   
+Download the XML-files and replace them in "<DeploymentShare>\Tools\x64\USMT5\"   
+
+Profits?   
 
 
 
