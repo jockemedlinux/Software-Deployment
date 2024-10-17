@@ -42,7 +42,7 @@ In my case I will be running a TS named "WIN10-ENT-X64" which will install Windo
 TS to capture user state.   
 ![](_resources/2.png)
 
-How to Restore UserState
+How to Restore UserState   
 ![](_resources/3.png)
 
 
