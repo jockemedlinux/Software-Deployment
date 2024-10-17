@@ -21,7 +21,7 @@ UDShare=\\RAMbunctious\share$\UserState
 UDDIR=%OSDComputername%
 ``` 
 
-![](_resources\1.png)
+![](_resources/1.png)
 
 
 Resources:
