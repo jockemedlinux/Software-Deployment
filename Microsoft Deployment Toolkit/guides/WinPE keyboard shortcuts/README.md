@@ -7,4 +7,4 @@ Outline:
 4. Add instructions to run compiled .exe binary at startup
 5. Profits?
 
-![](_resources\winpe-bg.bmp)
+![](_resources/winpe-bg.bmp)
