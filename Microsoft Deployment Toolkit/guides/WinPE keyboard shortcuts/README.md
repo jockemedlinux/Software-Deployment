@@ -72,12 +72,12 @@ Esc::ExitApp  ; Emergency Exit
 return
 
 ```
-![](_resources/1.bmp)   
+![](_resources/1.png)   
 
 ```
 Compile the script.
 ```
-![](_resources/2.bmp)
+![](_resources/2.png)
 
 # 4
 Mount your LiteTouchPE_x64.wim
@@ -97,4 +97,4 @@ Add it before or after the bddrun instructions.
 ```
 Use your tools :)
 ```
-![](_resources/3.bmp)
+![](_resources/3.png)
