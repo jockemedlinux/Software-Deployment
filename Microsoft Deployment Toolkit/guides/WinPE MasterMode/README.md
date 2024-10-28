@@ -13,5 +13,5 @@ Basically what it does is two things.
 
 1. Mount your LiteTouchPE_x64.wim media.    
 2. Copy mm folder and winpeshl.ini to your System32.    
-3. "Copy Microsoft.PowerShell_profile.ps1" to System32\WindowsPowerShell\Microsoft.PowerShell_profile.ps1    
+3. Copy "Microsoft.PowerShell_profile.ps1" to System32\WindowsPowerShell\Microsoft.PowerShell_profile.ps1    
 
