@@ -10,8 +10,10 @@ https://www.dell.com/support/kbdoc/sv-se/000211541/winpe-11-drivrutinspaket
 
 //HP
 https://ftp.ext.hp.com/pub/caps-softpaq/cmit/HP_WinPE_DriverPack.html
+https://ftp.hp.com/pub/caps-softpaq/cmit/softpaq/WinPE10.html
 
 //LENOVO
+https://support.lenovo.com/us/en/solutions/ht074984
 ```
 
 
