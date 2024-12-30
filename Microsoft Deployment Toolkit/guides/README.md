@@ -196,7 +196,11 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 
 ```
 
-
+# NETWORKING
+### Set Up NAT VM-Switch
+New-VMSwitch -Name "VM-net" -SwitchType Internal
+New-NetIPAddress -InterfaceAlias "vEthernet (VM-net)" -IPAddress 192.168.17.1 -PrefixLength 24
+New-NetNat -Name "VM-net" -InternalIPInterfaceAddressPrefix 192.168.17.0/24
 
 # PUBLIC GUIDES
 #### Manually create WinPEIso Media
