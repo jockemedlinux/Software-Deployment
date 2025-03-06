@@ -42,61 +42,65 @@ Write-Host -ForegroundColor Red         "[!] <- NO BUENO, AMIGO"
 Write-Host                              "--------------------------------------------------------------"
 Write-Host                              "[*] NOW LET'S CREATE A HYPER-V VIRTUAL MACHINE"
 
+######SPECIFY YOUR PATHS HERE############################################################
+
+$localdiskpath = "C:\ProgramData\Microsoft\Windows\Hyper-V\DISKS"
+$localvmpath = "C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines"
+
+##########################################################################################
 
 
-
-#FUNCTIONS
 function FolderChecks {
     do {
         # CHECK FOR EXISTING FOLDERS
-        $VMHDDpath = "D:\Virtualization\Hyper-V\Virtual Hard Disks\$VMname"
-        $VMPath = "D:\Virtualization\Hyper-V\Virtual Machines\$VMname"
+        $VMHDDpath = "$localdiskpath\$VMname.vhdx"
+        $VMPath = "$localvmpath\$VMname"
         
-        $TestVMHDDpath = Test-Path $VMPath
-        $TestVMPath = Test-Path $VMHDDpath
+        $TestVMHDDpath = Test-Path $VMHDDpath
+        $TestVMPath = Test-Path $VMPath
         
         if ($TestVMPath -or $TestVMHDDpath) {
             cls
-            Write-Host -ForegroundColor DarkYellow "[?] Leftover folders with the same name already exists in VMHDDpath or VMPath"
-            Write-Host
-            Write-Host                              "--------------------------------------------------------------------------------------"
-            Write-Host -ForegroundColor Red "Look here: -> $VMHDDpath"
-            Write-Host -ForegroundColor Red "Look here: -> $VMPath"           
-            Write-Host                              "--------------------------------------------------------------------------------------"
+            Write-Host -ForegroundColor DarkYellow "[?] Leftover folders with the same name already exist:"
+            Write-Host "--------------------------------------------------------------------------------------"
+            if ($TestVMHDDpath) {
+                Write-Host -ForegroundColor Red "Look here: -> $VMHDDpath"
+            }
+            if ($TestVMPath) {
+                Write-Host -ForegroundColor Red "Look here: -> $VMPath"
+            }
+            Write-Host "--------------------------------------------------------------------------------------"
             Write-Host
             
-            $userResponse = Read-Host "[*] Press enter when folders are deleted"
-            
-            $TestVMHDDpath = Test-Path $VMPath
-            $TestVMPath = Test-Path $VMHDDpath
+            $userResponse = Read-Host "[*] Please delete the folders above and press enter when done"
         } 
-
     } until (-not ($TestVMPath -or $TestVMHDDpath))
 }
 
-$VMname = Read-Host -Prompt " -> Name of VM? [WIN11-REF_XXX]"
-if ($VMname -eq "") {
-    $existingInstances = Get-VM -Name "WIN11-REF*" -ErrorAction SilentlyContinue
-    if ($existingInstances -eq $null) {
-        # If no existing instances, start with 1
-        Write-Host -ForegroundColor Green "[+] NO DUPLICATE VM PRESENT IN HYPER-V" 
-        $sequence = 1
-        $VMname = "WIN11-REF_$('{0:D3}' -f $sequence)"
-        
-} else {
-        # If there are existing instances, count them and add 1
-        Write-Host -ForegroundColor DarkYellow "[?] DUPLICATE VM INSTANCE ALREADY EXISTS. ADDING SEQUENCE NUMBER"
-        $sequence = $existingInstances.Count + 1
-        $VMname = "WIN11-REF_$('{0:D3}' -f $sequence)"        
-    }
-}
 
-#CHECK FOR EXISTING FOLDERS
+# Get the names of existing VMs
+$ExistingVM = (Get-VM).Name
+
+do {
+    # Prompt for VM name
+    $VMname = Read-Host -Prompt " -> Name of VM?"
+
+    # Check if the VM name is empty or consists only of whitespace
+    if ([string]::IsNullOrWhiteSpace($VMname)) {
+        Write-Host "[?] VM name can't be empty." -ForegroundColor Yellow
+    } elseif ($ExistingVM -contains $VMname) {
+        Write-Host "[?] VM Name already exists." -ForegroundColor Yellow
+    }
+} until (-not [string]::IsNullOrWhiteSpace($VMname) -and -not ($ExistingVM -contains $VMname))
+
+# At this point, we have a valid VM name
+Write-Host "[+] VM name is valid: $VMname" -ForegroundColor Green
+
+# CHECK FOR EXISTING FOLDERS
 FolderChecks
 
-
 # Display the generated VM name
-Write-Host "[?] Generated VM Name: $VMname" -ForegroundColor DarkYellow
+Write-Host "[?] Created VM Name: $VMname" -ForegroundColor DarkYellow
 
 Write-Host "--------------------------------------------------------------"
 
@@ -118,6 +122,11 @@ Write-Host "--------------------------------------------------------------"
     $processes = Read-Host -Prompt " -> Processors? `t`t[4]"
         if ($processes -eq "") { $processes = 4 }
     
+    
+    $adapters = Get-NetAdapter | Select-Object Name, status
+    Write-Host "`n[+] Available adapters:" -ForegroundColor GREEN
+    $adapters | ft -AutoSize
+
     $net = Read-Host -Prompt " -> NetworkAdapter? `t`t[Not connected]"
         if ($net -eq "") { $net = "Not connected" }
 
@@ -145,9 +154,10 @@ Write-Host "--------------------------------------------------------------"
     $memoryInBytes = $memory * 1MB
     
     #DEFINE LOCATION TO HYPER-V MACHINES AND DISKS
-    $VMHDDpath = "D:\Virtualization\Hyper-V\Virtual Hard Disks\$VMname"
-    $VMPath = "D:\Virtualization\Hyper-V\Virtual Machines\$VMname"   
-    $rootpath = (Get-VM).Path[0]
+    $VMHDDpath = "$localdiskpath\$VMname"
+    $VMPath = "$localvmpath\$VMname"
+
+    $rootpath = (Get-VMHost).VirtualMachinePath
     # Continue with the rest of your script...
     Write-Host ""
     
@@ -166,6 +176,7 @@ Write-Host "--------------------------------------------------------------"
 
 # CREATE AND PREP PRIMARY VHDXs
 $VHDXPath = "$VMHDDPath.vhdx"
+
 New-VHD -Path $VHDXPath -SizeBytes $sizeinBytes -Dynamic | Out-Null
     Write-Host
     Write-Host -ForegroundColor DarkYellow "[?] Preparing new VHDX."
