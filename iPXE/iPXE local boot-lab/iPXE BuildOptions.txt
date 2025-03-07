@@ -1,0 +1,35 @@
+So in order to build your own iPXE boot media there are a few things to consider.
+
+1. What build-targets do you have? 
+	There are a lot of ways to build iPXE bootfiles. For different kinds of OS's and pre-boot environments.
+	There is great documentation here: https://ipxe.org/appnote/buildtargets
+2. In my case, I mostly use Windows based systems, booting from a custom dhcp-server serving up the required pxe files and boot scripts. So I mostly build with ipxe.efi, snponly.efi, and undionly.kpxe.
+
+So first thing to understand is what you are booting from. 
+	Are you booting from a (U)EFI enabled machine? Best bet is to use ipxe.efi or snponly.efi.
+	Are you booting from a BIOS/LEGACY enabled machien? best bet is to use undionly.kpxe.
+Why? Because they are different in the way the POST-shells handles the drivers and chainloading.
+
+So this is how I've set it up.
+
+
+I have "DHCP Server for Windows" (DSFW) running, you can google and download it. Don't forget to make a donation.
+This gives me a bit more control over my tftp, http, and dhcp settings that let's say Microsofts WDS. which basically only uses Microsofts own signed bootmfgw.efi,bcd and bootmanager files. It is possible to configure WDS to work with this but it's a hassle.
+
+Step 1; Create a boot-script.
+In my case, I chainload .efi files running on my http-server via DSFW which in turn loads a winpe environment using wimboot and MDT
+
+ ```BOOT.ipxe
+ #!ipxe
+
+### BUILD WITH:
+# make bin-x86_64-efi/ipxe.efi 		EMBED=BOOT.ipxe
+# make bin-x86_64-efi/snponly.efi 	EMBED=BOOT.ipxe
+# make bin/undionly.kpxe			EMBED=BOOT.ipxe
+### make build changes in bin/config/general.h
+
+echo "Loading boot script..."
+# Add your boot commands here
+dhcp || shell
+chain http://10.25.0.254/_pxe/boot.ipxe
+ ```
