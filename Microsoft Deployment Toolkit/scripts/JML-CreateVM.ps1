@@ -61,7 +61,8 @@ function FolderChecks {
         
         if ($TestVMPath -or $TestVMHDDpath) {
             cls
-            Write-Host -ForegroundColor DarkYellow "[?] Leftover folders with the same name already exist:"
+            Write-Host -ForegroundColor DarkYellow "[?] There is no VM with this name but there are leftover files or folders with the same name."
+            Write-Host -ForegroundColor DarkYellow "[?] Delete them and press enter or restart the script and choose another name"
             Write-Host "--------------------------------------------------------------------------------------"
             if ($TestVMHDDpath) {
                 Write-Host -ForegroundColor Red "Look here: -> $VMHDDpath"
@@ -72,7 +73,7 @@ function FolderChecks {
             Write-Host "--------------------------------------------------------------------------------------"
             Write-Host
             
-            $userResponse = Read-Host "[*] Please delete the folders above and press enter when done"
+            $userResponse = Read-Host "[*] Please delete the files or folders above and press enter when done"
         } 
     } until (-not ($TestVMPath -or $TestVMHDDpath))
 }
@@ -87,9 +88,9 @@ do {
 
     # Check if the VM name is empty or consists only of whitespace
     if ([string]::IsNullOrWhiteSpace($VMname)) {
-        Write-Host "[?] VM name can't be empty." -ForegroundColor Yellow
+        Write-Host "[?] VM name can't be empty." -ForegroundColor DarkYellow
     } elseif ($ExistingVM -contains $VMname) {
-        Write-Host "[?] VM Name already exists." -ForegroundColor Yellow
+        Write-Host "[?] VM Name already exists." -ForegroundColor DarkYellow
     }
 } until (-not [string]::IsNullOrWhiteSpace($VMname) -and -not ($ExistingVM -contains $VMname))
 
